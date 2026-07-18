@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Hero } from "@/components/Hero";
-import { TechMarquee } from "@/components/TechMarquee";
+import { StackSection } from "@/components/StackSection";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TechMarquee />
+      <StackSection />
 
       {/* Selected work */}
       <section id="selected-work" className="px-6 md:px-10 py-24 md:py-32">
