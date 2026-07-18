@@ -17,9 +17,9 @@ export default function ProjectsPage() {
           Case studies, not just screenshots.
         </h1>
         <p className="text-gray-400 mt-6 max-w-xl">
-          Every project here shipped with a real problem behind it. Filter by
-          category, or open any card for the full breakdown — the decisions,
-          the trade-offs, and what I&apos;d do differently now.
+          Every project here solved a real problem. Open any card for the full
+          breakdown — the decisions, the trade-offs, and what I&apos;d do
+          differently now.
         </p>
       </ScrollReveal>
 

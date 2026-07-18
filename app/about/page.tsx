@@ -41,15 +41,15 @@ export default function AboutPage() {
           </p>
 
           <p data-reveal-item>
-            Today, as a final-year Software Engineering student, I'm interning at Geek Tech Solutions, contributing to a production-grade POS system with a focus on backend engineering, security, and performance.
+            Today, as a final-year Software Engineering student, I&apos;m interning at Geek Tech Solutions, contributing to a production-grade POS system with a focus on backend engineering, security, and performance.
           </p>
 
           <p data-reveal-item>
-            I've built AI-powered and full-stack applications—from Nepali License Plate Recognition to healthcare, employee management, and e-commerce systems—emphasizing clean architecture, scalability, and production-ready development.
+            I&apos;ve built AI-powered and full-stack applications—from Nepali License Plate Recognition to healthcare, employee management, and e-commerce systems—emphasizing clean architecture, scalability, and production-ready development.
           </p>
 
           <p data-reveal-item>
-            Currently, I'm expanding my expertise in Generative AI, LLMs, and RAG while building modern full-stack applications that solve meaningful real-world problems.
+            Currently, I&apos;m expanding my expertise in Generative AI, LLMs, and RAG while building modern full-stack applications that solve meaningful real-world problems.
           </p>
         </ScrollReveal>
       </div>

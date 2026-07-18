@@ -9,12 +9,13 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const project = projects.find((p) => p.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
   return {
     title: project.title,
@@ -22,16 +23,22 @@ export function generateMetadata({
   };
 }
 
-export default function ProjectDetailPage({
+export default async function ProjectDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = projects.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const currentIndex = projects.findIndex((p) => p.slug === params.slug);
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
   const next = projects[(currentIndex + 1) % projects.length];
+
+  const liveLinks = project.liveUrls ||
+    (project.liveUrl
+      ? [{ label: "Live Site", url: project.liveUrl }]
+      : []);
 
   return (
     <div className="px-6 md:px-10 pt-40 pb-32 max-w-4xl mx-auto">
@@ -44,9 +51,7 @@ export default function ProjectDetailPage({
           All projects
         </Link>
 
-        <p className="eyebrow mb-4">
-          {project.category} — {project.year}
-        </p>
+        <p className="eyebrow mb-4">{project.category}</p>
         <h1 className="font-display text-clamp-h1 tracking-tightest mb-6">
           {project.title}
         </h1>
@@ -55,16 +60,17 @@ export default function ProjectDetailPage({
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
-          {project.liveUrl && (
+          {liveLinks.map((link) => (
             <a
-              href={project.liveUrl}
+              key={link.url}
+              href={link.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 bg-white text-black text-sm font-medium hover:bg-gray-100 transition-colors"
             >
-              Live Site <ArrowUpRight className="w-4 h-4" />
+              {link.label} <ArrowUpRight className="w-4 h-4" />
             </a>
-          )}
+          ))}
           {project.repoUrl && (
             <a
               href={project.repoUrl}
@@ -78,68 +84,16 @@ export default function ProjectDetailPage({
         </div>
 
         <div className="flex flex-wrap gap-2 mb-16">
-          {project.stack.map((tech) => (
+          {project.tech.map((t) => (
             <span
-              key={tech}
-              className="text-xs text-gray-400 border border-gray-800 px-3 py-1.5"
+              key={t}
+              className="text-xs text-gray-400 border border-gray-800 px-3 py-1.5 rounded-full"
             >
-              {tech}
+              {t}
             </span>
           ))}
         </div>
       </ScrollReveal>
-
-      <div className="rule mb-16" />
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <ScrollReveal className="md:col-span-1">
-          <p className="eyebrow mb-4">The Problem</p>
-        </ScrollReveal>
-        <ScrollReveal className="md:col-span-2 text-gray-400 leading-relaxed">
-          <p>{project.problem}</p>
-        </ScrollReveal>
-      </div>
-
-      <div className="rule my-16" />
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <ScrollReveal className="md:col-span-1">
-          <p className="eyebrow mb-4">The Approach</p>
-        </ScrollReveal>
-        <ScrollReveal className="md:col-span-2" stagger={0.1}>
-          <ul className="space-y-5">
-            {project.approach.map((step, i) => (
-              <li key={i} data-reveal-item className="flex gap-4">
-                <span className="font-mono text-gray-600 text-sm mt-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-gray-400 leading-relaxed">{step}</p>
-              </li>
-            ))}
-          </ul>
-        </ScrollReveal>
-      </div>
-
-      <div className="rule my-16" />
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
-        <ScrollReveal className="md:col-span-1">
-          <p className="eyebrow mb-4">The Impact</p>
-        </ScrollReveal>
-        <ScrollReveal className="md:col-span-2" stagger={0.1}>
-          <ul className="space-y-4">
-            {project.impact.map((point, i) => (
-              <li
-                key={i}
-                data-reveal-item
-                className="text-white font-display text-lg tracking-tight-2 leading-snug"
-              >
-                {point}
-              </li>
-            ))}
-          </ul>
-        </ScrollReveal>
-      </div>
 
       <ScrollReveal className="border-t border-gray-800 pt-12 flex items-center justify-between">
         <span className="text-sm text-gray-500">Next project</span>

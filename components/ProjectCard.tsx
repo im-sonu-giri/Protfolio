@@ -6,39 +6,56 @@ import { ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import type { Project } from "@/data/projects";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLSpanElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = () => {
     const card = cardRef.current;
+    const arrow = arrowRef.current;
     if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Tilt magnitude is intentionally small (max ~6deg) — this is a lift,
-    // not a carnival ride. Translate-Z + perspective gives the lift its depth.
-    const rotateX = ((y - rect.height / 2) / rect.height) * -6;
-    const rotateY = ((x - rect.width / 2) / rect.width) * 6;
 
     gsap.to(card, {
-      rotateX,
-      rotateY,
-      translateZ: 20,
-      duration: 0.4,
+      y: -6,
+      duration: 0.3,
       ease: "power2.out",
-      transformPerspective: 800,
     });
+
+    if (arrow) {
+      gsap.to(arrow, {
+        x: 3,
+        y: -3,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
   const handleMouseLeave = () => {
-    gsap.to(cardRef.current, {
-      rotateX: 0,
-      rotateY: 0,
-      translateZ: 0,
-      duration: 0.6,
+    const card = cardRef.current;
+    const arrow = arrowRef.current;
+    if (!card) return;
+
+    gsap.to(card, {
+      y: 0,
+      duration: 0.4,
       ease: "power3.out",
     });
+
+    if (arrow) {
+      gsap.to(arrow, {
+        x: 0,
+        y: 0,
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    }
   };
 
   return (
@@ -50,21 +67,19 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     >
       <div
         ref={cardRef}
-        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="border border-gray-800 p-8 h-full flex flex-col justify-between transition-colors duration-300 group-hover:border-gray-500 will-change-transform"
-        style={{ transformStyle: "preserve-3d" }}
+        className="border border-gray-800 p-8 h-full flex flex-col justify-between transition-[border-color] duration-300 group-hover:border-gray-500 will-change-transform"
       >
         <div>
           <div className="flex items-start justify-between mb-6">
             <span className="eyebrow">
               {String(index + 1).padStart(2, "0")} / {project.category}
             </span>
-            <ArrowUpRight
-              className="w-5 h-5 text-gray-600 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
-            />
+            <span ref={arrowRef} className="inline-flex">
+              <ArrowUpRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-[color] duration-300" />
+            </span>
           </div>
-
           <h3 className="font-display text-2xl md:text-3xl tracking-tight-2 mb-3">
             {project.title}
           </h3>
@@ -72,14 +87,13 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             {project.summary}
           </p>
         </div>
-
         <div className="mt-8 flex flex-wrap gap-2">
-          {project.stack.slice(0, 4).map((tech) => (
+          {project.tech.map((t) => (
             <span
-              key={tech}
-              className="text-xs text-gray-500 border border-gray-800 px-2 py-1"
+              key={t}
+              className="text-xs text-gray-500 border border-gray-800 rounded-full px-3 py-1"
             >
-              {tech}
+              {t}
             </span>
           ))}
         </div>
