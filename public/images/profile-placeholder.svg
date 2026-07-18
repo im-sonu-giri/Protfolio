@@ -3,6 +3,6 @@
   <circle cx="400" cy="380" r="140" fill="#222222"/>
   <path d="M180 900 C180 680 620 680 620 900 Z" fill="#222222"/>
   <text x="400" y="960" text-anchor="middle" font-family="monospace" font-size="20" fill="#555555">
-    Replace with /public/images/profile.jpg
+    This placeholder is no longer used — see /public/images/Sonu.png
   </text>
 </svg>

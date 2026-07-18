@@ -14,23 +14,15 @@ export default function AboutPage() {
       <ScrollReveal className="mb-20">
         <p className="eyebrow mb-4">About</p>
         <h1 className="font-display text-clamp-h1 tracking-tightest max-w-3xl">
-          I build things, then I ask why they broke.
+        Great software starts with thoughtful design
         </h1>
       </ScrollReveal>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-16">
         <ScrollReveal className="md:col-span-2">
           <div className="relative aspect-[4/5] border border-gray-800 overflow-hidden">
-            {/*
-              TODO: Replace this placeholder with a real professional photo.
-              Drop the file at /public/images/profile.jpg (portrait orientation
-              works best given the aspect-[4/5] frame above), then swap the
-              src below. Keep the grayscale filter for tonal consistency with
-              the rest of the site, or remove it if the photo is already
-              monochrome.
-            */}
             <Image
-              src="/images/profile-placeholder.svg"
+              src="/images/Sonu.png"
               alt="Sonu Giri"
               fill
               className="object-cover grayscale contrast-125"
@@ -41,49 +33,30 @@ export default function AboutPage() {
 
         <ScrollReveal className="md:col-span-3 flex flex-col gap-6 text-gray-400 text-lg leading-relaxed">
           <p data-reveal-item>
-            I&apos;m a final-year Computer Science student at NCIT in
-            Kathmandu, currently interning as a Software Developer at Geek
-            Tech Solutions in Lalitpur. Most of my time right now goes into
-            backend and integration work on a capstone system that pulls
-            together computer vision, time-series forecasting, and
-            classification into one production pipeline.
+            My journey into technology began in Class 9 when I built my first website. That curiosity led to internships at Panacea Nepal and Encode Solution, where I gained hands-on experience building real-world web applications.
           </p>
+
           <p data-reveal-item>
-            I got into engineering the way a lot of people do — by wanting to
-            build something specific, then discovering how much I didn&apos;t
-            know about doing it properly. The projects that taught me the
-            most weren&apos;t the ones that worked on the first try. They
-            were the ones that broke in production-shaped ways: a webhook
-            that fired twice, a migration that locked longer than expected, a
-            forecasting model whose accuracy silently collapsed because of
-            one wrong transformation.
+            A scholarship brought me to Nepal College of Information Technology (NCIT), where I pursued Software Engineering and developed a passion for System Design, scalable architectures, and building reliable software.
           </p>
+
           <p data-reveal-item>
-            That&apos;s shaped how I work now. I care about system design
-            before I care about frameworks — what the data model actually
-            enforces, where the failure modes live, what happens under
-            concurrent load. I take testing seriously, not as a checkbox but
-            as the fastest way to find out if I was wrong. And lately, I&apos;ve
-            been pulled toward LLMs and retrieval-augmented generation,
-            specifically the unglamorous problem of making retrieval
-            trustworthy enough to build real applications on top of.
+            Today, as a final-year Software Engineering student, I'm interning at Geek Tech Solutions, contributing to a production-grade POS system with a focus on backend engineering, security, and performance.
           </p>
+
           <p data-reveal-item>
-            Outside of coursework and the internship, I build things that
-            force me to learn something specific: a Nepali license plate
-            recognition pipeline to actually understand computer vision
-            end-to-end, a real-time chat app on Django Channels to understand
-            pub/sub instead of just importing a chat SDK, and a handful of
-            full-stack systems — employee management, clinic management,
-            e-commerce — each one picked because it had a different kind of
-            hard problem hiding inside it.
+            I've built AI-powered and full-stack applications—from Nepali License Plate Recognition to healthcare, employee management, and e-commerce systems—emphasizing clean architecture, scalability, and production-ready development.
+          </p>
+
+          <p data-reveal-item>
+            Currently, I'm expanding my expertise in Generative AI, LLMs, and RAG while building modern full-stack applications that solve meaningful real-world problems.
           </p>
         </ScrollReveal>
       </div>
 
       <ScrollReveal className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-800 pt-12">
         {[
-          { label: "Based in", value: "Nepal" },
+          { label: "Based in", value: "Kathmandu,Nepal" },
           { label: "Focus", value: "Full-Stack & Systems" },
           { label: "Currently", value: "Interning + Capstone" },
           { label: "Exploring", value: "LLMs & RAG" },

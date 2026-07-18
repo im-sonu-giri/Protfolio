@@ -61,19 +61,27 @@ export function Hero() {
   /* ── Primary button hover — scale + glow ──────────────────── */
 
   const handlePrimaryEnter = useCallback(() => {
+    const d = dur(300);
     gsap.to(primaryRef.current, {
       scale: 1.03,
+      backgroundColor: "#ffffff",
+      color: "#000000",
+      borderColor: "#ffffff",
       boxShadow: "0 0 24px rgba(255,255,255,0.25)",
-      duration: dur(300),
+      duration: d,
       ease: "power2.out",
     });
   }, [dur]);
 
   const handlePrimaryLeave = useCallback(() => {
+    const d = dur(300);
     gsap.to(primaryRef.current, {
       scale: 1,
+      backgroundColor: "rgba(0,0,0,0)",
+      color: "#ffffff",
+      borderColor: "#2A2A2A",
       boxShadow: "0 0 0px rgba(255,255,255,0)",
-      duration: dur(300),
+      duration: d,
       ease: "power2.out",
     });
   }, [dur]);
@@ -172,7 +180,7 @@ export function Hero() {
             ref={primaryRef}
             onHoverStart={handlePrimaryEnter}
             onHoverEnd={handlePrimaryLeave}
-            className="group inline-flex items-center gap-2 h-14 md:h-16 px-9 md:px-11 rounded-md bg-white text-black text-base font-medium border border-transparent cursor-pointer"
+            className="group inline-flex items-center gap-2 h-14 md:h-16 px-9 md:px-11 rounded-full bg-transparent text-white text-base font-medium border border-gray-700 cursor-pointer"
             onClick={() =>
               document
                 .getElementById("selected-work")

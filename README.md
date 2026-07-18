@@ -100,17 +100,11 @@ JS-measured width, so there's no layout thrash on resize.
 
 ## Adding your photo
 
-Drop a portrait photo at `public/images/profile.jpg`, then in
-`app/about/page.tsx` swap:
+A portrait photo is already set at `public/images/Sonu.png`, referenced in
+`app/about/page.tsx` as:
 
 ```tsx
-src="/images/profile-placeholder.svg"
-```
-
-for:
-
-```tsx
-src="/images/profile.jpg"
+src="/images/Sonu.png"
 ```
 
 The frame is `aspect-[4/5]` (portrait) with a grayscale filter applied via
