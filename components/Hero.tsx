@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Download, ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/gsap";
@@ -16,27 +16,27 @@ export function Hero() {
   const sweepTextRef = useRef<HTMLSpanElement>(null);
   const router = useRouter();
 
-  /* ── Reduced-motion gate ─────────────────────────────────── */
+  /* ── Reduced-motion support ─────────────────────────────────── */
   const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     prefersReducedMotion.current = mq.matches;
+
     const onChange = (e: MediaQueryListEvent) => {
       prefersReducedMotion.current = e.matches;
     };
+
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  /** Returns seconds — 0 when the user prefers reduced motion. */
   const dur = useCallback(
     (ms: number) => (prefersReducedMotion.current ? 0 : ms / 1000),
-    [],
+    []
   );
 
-  /* ── Hero entrance timeline ───────────────────────────────── */
-
+  /* ── Hero entrance animation ───────────────────────────────── */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
@@ -51,15 +51,14 @@ export function Hero() {
         .to(
           "[data-hero-fade]",
           { opacity: 1, y: 0, scale: 1, duration: 0.9, stagger: 0.12 },
-          "-=0.6",
+          "-=0.6"
         );
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  /* ── Primary button hover — scale + glow ──────────────────── */
-
+  /* ── Button hover animations ──────────────────────────────── */
   const handlePrimaryEnter = useCallback(() => {
     const d = dur(300);
     gsap.to(primaryRef.current, {
@@ -86,53 +85,27 @@ export function Hero() {
     });
   }, [dur]);
 
-  /* ── Secondary button hover — fill sweep + border ─────────── */
-
   const handleSecondaryEnter = useCallback(() => {
     const d = dur(350);
-    gsap.to(sweepRef.current, {
-      scaleX: 1,
-      duration: d,
-      ease: "power2.out",
-    });
-    gsap.to(sweepTextRef.current, {
-      color: "#000000",
-      duration: d,
-      ease: "power2.out",
-    });
-    gsap.to(secondaryRef.current, {
-      borderColor: "#ffffff",
-      duration: d,
-      ease: "power2.out",
-    });
+    gsap.to(sweepRef.current, { scaleX: 1, duration: d, ease: "power2.out" });
+    gsap.to(sweepTextRef.current, { color: "#000000", duration: d, ease: "power2.out" });
+    gsap.to(secondaryRef.current, { borderColor: "#ffffff", duration: d, ease: "power2.out" });
   }, [dur]);
 
   const handleSecondaryLeave = useCallback(() => {
     const d = dur(350);
-    gsap.to(sweepRef.current, {
-      scaleX: 0,
-      duration: d,
-      ease: "power2.out",
-    });
-    gsap.to(sweepTextRef.current, {
-      color: "#ffffff",
-      duration: d,
-      ease: "power2.out",
-    });
-    gsap.to(secondaryRef.current, {
-      borderColor: "#2A2A2A",
-      duration: d,
-      ease: "power2.out",
-    });
+    gsap.to(sweepRef.current, { scaleX: 0, duration: d, ease: "power2.out" });
+    gsap.to(sweepTextRef.current, { color: "#ffffff", duration: d, ease: "power2.out" });
+    gsap.to(secondaryRef.current, { borderColor: "#2A2A2A", duration: d, ease: "power2.out" });
   }, [dur]);
 
   /* ── Render ───────────────────────────────────────────────── */
-
   return (
     <section
       ref={containerRef}
       className="relative h-screen h-[100svh] flex flex-col items-center justify-center px-6 md:px-10 overflow-hidden"
     >
+      {/* 3D Background */}
       <HeroBackground />
 
       <div className="max-w-5xl mx-auto w-full text-center relative z-10">
@@ -170,12 +143,11 @@ export function Hero() {
           &middot; LLM &amp; RAG Explorer
         </p>
 
-        {/* ── CTA buttons ─────────────────────────────────── */}
+        {/* CTA Buttons */}
         <div
           data-hero-fade
           className="mt-12 flex flex-wrap items-center justify-center gap-4"
         >
-          {/* Primary — solid white, scale + glow on hover */}
           <MagneticButton
             ref={primaryRef}
             onHoverStart={handlePrimaryEnter}
@@ -191,7 +163,6 @@ export function Hero() {
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </MagneticButton>
 
-          {/* Secondary — transparent bordered, fill-sweep on hover */}
           <MagneticButton
             ref={secondaryRef}
             onHoverStart={handleSecondaryEnter}
@@ -209,7 +180,7 @@ export function Hero() {
           </MagneticButton>
         </div>
 
-        {/* Download CV — understated text link, not a full button */}
+        {/* Download CV */}
         <a
           href={SITE_CONFIG.resumeUrl}
           download
@@ -221,6 +192,7 @@ export function Hero() {
         </a>
       </div>
 
+      {/* Scroll Indicator */}
       <div
         data-hero-fade
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-xs text-gray-500 z-10"
