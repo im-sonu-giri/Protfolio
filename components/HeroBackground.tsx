@@ -126,16 +126,18 @@ export function HeroBackground() {
           behind video state) so it loads in parallel; GSAP handles which
           layer is visible. Filtered to match the B&W palette. */}
       {!gifFailed && (
-        <img
-          ref={gifRef}
-          src="/images/hero-bg-1.gif"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-0 grayscale contrast-125"
-          onLoad={() => setGifReady(true)}
-          onError={() => setGifFailed(true)}
-        />
-    )}
+      <Image
+        ref={gifRef}
+        src="/images/hero-bg-1.gif"
+        alt=""
+        aria-hidden="true"
+        fill
+        unoptimized
+        className="absolute inset-0 object-cover opacity-0 grayscale contrast-125"
+        onLoad={() => setGifReady(true)}
+        onError={() => setGifFailed(true)}
+      />
+  )}
 
       {/* Dark overlay for text contrast — sits on top of all background layers */}
       <div className="absolute inset-0 bg-black/70" />
