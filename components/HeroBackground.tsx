@@ -135,7 +135,7 @@ export function HeroBackground() {
           onLoad={() => setGifReady(true)}
           onError={() => setGifFailed(true)}
         />
-      )}
+    )}
 
       {/* Dark overlay for text contrast — sits on top of all background layers */}
       <div className="absolute inset-0 bg-black/70" />
