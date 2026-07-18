@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Neue Montreal", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #000000;
+  color-scheme: dark;
+  scroll-behavior: auto; /* Lenis owns scroll easing; native smooth-scroll would fight it */
+}
+
+html.lenis {
+  height: auto;
+}
+
+body {
+  background: #000000;
+  color: #f5f5f5;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Visible keyboard focus everywhere — never suppressed, only restyled */
+:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Thin, monochrome scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+@keyframes hero-grid-drift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 56px 56px, 56px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility: hairline rule used throughout instead of borders with alpha */
+.rule {
+  height: 1px;
+  background: #222222;
+}
+
+/* Utility: the "field label" eyebrow style used above section headings */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888888;
+}
