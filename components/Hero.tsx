@@ -196,7 +196,7 @@ export function Hero() {
             ref={secondaryRef}
             onHoverStart={handleSecondaryEnter}
             onHoverEnd={handleSecondaryLeave}
-            className="relative inline-flex items-center h-14 md:h-16 px-9 md:px-11 rounded-md bg-transparent text-base font-medium border border-gray-700 overflow-hidden cursor-pointer"
+            className="relative inline-flex items-center h-14 md:h-16 px-9 md:px-11 rounded-full bg-transparent text-base font-medium border border-gray-700 overflow-hidden cursor-pointer"
             onClick={() => router.push("/contact")}
           >
             <span

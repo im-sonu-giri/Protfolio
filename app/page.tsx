@@ -23,7 +23,7 @@ export default function HomePage() {
             <div>
               <p className="eyebrow mb-4">Selected Work</p>
               <h2 className="font-display text-clamp-h2 tracking-tight-2">
-                A few systems I&apos;m proud of.
+                From idea to implementation.
               </h2>
             </div>
             <Link
@@ -34,6 +34,13 @@ export default function HomePage() {
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </ScrollReveal>
+
+          <p className="text-gray-400 -mt-10 mb-12 max-w-2xl leading-relaxed">
+            Every project tells a story of solving real-world problems through
+            thoughtful architecture, modern technologies, and continuous
+            iteration. Explore the design decisions, technical challenges, and
+            lessons learned.
+          </p>
 
           <ScrollReveal
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -52,25 +59,35 @@ export default function HomePage() {
           <ScrollReveal>
             <p className="eyebrow mb-4">How I Work</p>
             <h2 className="font-display text-clamp-h2 tracking-tight-2 leading-tight">
-              I&apos;d rather ship the boring, correct version first.
+              I enjoy building products where clean code meets scalable architecture.
             </h2>
           </ScrollReveal>
           <ScrollReveal className="flex flex-col justify-center gap-6 text-gray-400 leading-relaxed">
             <p data-reveal-item>
-              Most of what I&apos;ve learned came from the unglamorous parts
-              of projects — the webhook that fires twice, the migration that
-              locks a table longer than expected, the test I skipped that
-              cost a weekend. I design for those failure modes now, before
-              they happen.
+              I believe in building software the right way — not the fastest
+              or flashiest. Before writing a single line of code, I invest
+              time in thoughtful system design, clear requirements, and proper
+              architecture. I follow Agile methodologies — participating in
+              sprint planning, daily standups, and retrospectives while
+              maintaining strong communication with team members. I break
+              complex features into small, manageable chunks, deliver working
+              increments, and iterate based on feedback.
             </p>
             <p data-reveal-item>
-              I&apos;m a final-year Computer Science student, currently
-              interning as a software developer where I own backend and
-              integration work on a production capstone system. Outside of
-              that, I build things that force me to learn — a chat app to
-              understand pub/sub, a plate-recognition pipeline to understand
-              computer vision, and lately, RAG systems to understand what it
-              actually takes to make an LLM trustworthy.
+              I maintain clean, well-organized, and maintainable codebases
+              using modern yet stable technologies and best practices. I&apos;m
+              not afraid to explore new tools and frameworks, but I prioritize
+              reliability and long-term maintainability. I actively use AI
+              tools (like Claude, Cursor, and GitHub Copilot) to accelerate
+              development, improve code quality, and explore new ideas faster.
+            </p>
+            <p data-reveal-item>
+              From early internships to my current role at Geek Tech Solutions,
+              I&apos;ve learned that great engineering comes from discipline,
+              continuous learning, and ownership. Whether working on
+              production systems or personal projects, I focus on delivering
+              real value through thoughtful design, robust testing, and
+              attention to detail.
             </p>
           </ScrollReveal>
         </div>
@@ -135,14 +152,14 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex px-8 md:px-10 py-4 bg-white text-black text-sm font-medium border border-transparent transition-[background,color,border-color] duration-300 hover:bg-transparent hover:text-white hover:border-white"
+              className="inline-flex px-8 md:px-10 py-4 rounded-full bg-white text-black text-sm font-medium border border-transparent transition-[background,color,border-color] duration-300 hover:bg-transparent hover:text-white hover:border-white"
             >
               Get in Touch
             </Link>
             <a
               href={SITE_CONFIG.resumeUrl}
               download
-              className="inline-flex items-center gap-1.5 px-8 md:px-10 py-4 border border-gray-700 text-sm text-white transition-[border-color] duration-300 hover:border-white"
+              className="inline-flex items-center gap-1.5 px-8 md:px-10 py-4 rounded-full border border-gray-700 text-sm text-white transition-[border-color] duration-300 hover:border-white"
             >
               <Download className="w-4 h-4" />
               Download CV

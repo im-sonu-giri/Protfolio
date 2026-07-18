@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Github, Linkedin, Phone, Download } from "lucide-react";
+import { Mail, Github, Linkedin, Download } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ContactForm } from "@/components/ContactForm";
 import { SITE_CONFIG } from "@/data/site";
@@ -37,17 +37,6 @@ export default function ContactPage() {
             <Mail className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
             <span className="text-gray-400 group-hover:text-white transition-colors">
               {SITE_CONFIG.email}
-            </span>
-          </a>
-
-          <a
-            href={`tel:${SITE_CONFIG.phone}`}
-            data-reveal-item
-            className="flex items-center gap-4 group"
-          >
-            <Phone className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
-            <span className="text-gray-400 group-hover:text-white transition-colors">
-              {SITE_CONFIG.phone}
             </span>
           </a>
 

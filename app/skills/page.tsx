@@ -14,11 +14,14 @@ export default function SkillsPage() {
       <ScrollReveal className="mb-20">
         <p className="eyebrow mb-4">Skills & Expertise</p>
         <h1 className="font-display text-clamp-h1 tracking-tightest max-w-3xl">
-          Depth over buzzwords.
+          Mastering the fundamentals. Exploring the future.
         </h1>
         <p className="text-gray-400 mt-6 max-w-xl">
-          Organized by where I actually spend time, not by what looks good on
-          a list. The LLM/RAG section is the newest and growing fastest.
+          Every skill here has been developed through real projects and
+          continuous learning. While strengthening my expertise in full-stack
+          development, backend engineering, and system design, I&apos;m actively
+          exploring Generative AI, LLMs, and Retrieval-Augmented Generation
+          (RAG).
         </p>
       </ScrollReveal>
 
