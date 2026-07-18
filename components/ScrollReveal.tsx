@@ -1,15 +1,15 @@
 "use client";
-import { ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   /** stagger delay in seconds when multiple children with data-reveal-item are present */
   stagger?: number;
   y?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
 };
 
 /**
@@ -53,10 +53,14 @@ export function ScrollReveal({
     return () => ctx.revert();
   }, [stagger, y]);
 
-  const Component = Tag as any;
-  return (
-    <Component ref={ref} className={className}>
-      {children}
-    </Component>
-  );
+ const Component = Tag;
+
+return (
+  <Component
+    ref={ref as React.Ref<HTMLElement>}
+    className={className}
+  >
+    {children}
+  </Component>
+);
 }
